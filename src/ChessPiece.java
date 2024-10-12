@@ -1,4 +1,19 @@
-package PACKAGE_NAME;
+public abstract class ChessPiece {
 
-public class ChessPiece {
+    protected String color; // цвет фигуры
+    protected boolean check = true;
+
+
+    public ChessPiece(String color) {
+        this.color = color;
+        this.check = true;
+    }
+
+
+    public String getColor() {
+        return color;
+    }
+
+    public abstract boolean canMoveToPosition(ChessBoard chessBoard, int line, int column, int toLine, int toColumn);
+    public abstract String getSymbol();
 }
