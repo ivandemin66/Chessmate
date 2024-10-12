@@ -14,13 +14,11 @@ public class Rook extends ChessPiece {
 
     @Override
     public boolean canMoveToPosition(ChessBoard board, int line, int column, int toLine, int toColumn) {
-        // Check if the target position is within bounds
         if (!board.checkPos(toLine) || !board.checkPos(toColumn)) return false;
 
-        // Rook moves in straight lines (either row or column must remain constant)
         if (line != toLine && column != toColumn) return false;
 
-        // Check if there's a piece blocking the path
+
         if (line == toLine) {
             int start = Math.min(column, toColumn);
             int end = Math.max(column, toColumn);
@@ -35,7 +33,7 @@ public class Rook extends ChessPiece {
             }
         }
 
-        // Check if the destination contains a friendly piece
+        
         if (board.board[toLine][toColumn] != null && board.board[toLine][toColumn].getColor().equals(this.getColor())) {
             return false;
         }

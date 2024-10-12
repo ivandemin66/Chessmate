@@ -18,7 +18,6 @@ public class ChessBoard {
                 board[endLine][endColumn] = board[startLine][startColumn];
                 board[startLine][startColumn] = null;
 
-                // Обновляем check, если перемещаются король или ладья
                 if (board[endLine][endColumn] instanceof King || board[endLine][endColumn] instanceof Rook) {
                     board[endLine][endColumn].check = false;
                 }
@@ -55,7 +54,6 @@ public class ChessBoard {
                 }
             }
         } else {
-            // Для черных фигур
             if (board[7][0] == null || board[7][4] == null) return false;
             if (board[7][0].getSymbol().equals("R") && board[7][4].getSymbol().equals("K")) {
                 if (board[7][1] == null && board[7][2] == null && board[7][3] == null) {
@@ -63,7 +61,6 @@ public class ChessBoard {
                             board[7][0].check && board[7][4].check &&
                             !new King("Black").isUnderAttack(this, 7, 2)) {
 
-                        // Перемещаем короля и ладью
                         board[7][4] = null;
                         board[7][2] = new King("Black");
                         board[7][2].check = false;
@@ -72,7 +69,7 @@ public class ChessBoard {
                         board[7][3] = new Rook("Black");
                         board[7][3].check = false;
 
-                        nowPlayer = "White"; // Следующий ход за белыми
+                        nowPlayer = "White";
                         return true;
                     }
                 }
@@ -84,7 +81,6 @@ public class ChessBoard {
 
     public boolean castling7() {
         if (nowPlayer.equals("White")) {
-            // Проверяем, что король и ладья не двигались, и что клетки между ними пусты
             if (board[0][7] == null || board[0][4] == null) return false;
             if (board[0][7].getSymbol().equals("R") && board[0][4].getSymbol().equals("K")) {
                 if (board[0][5] == null && board[0][6] == null) {
@@ -92,7 +88,6 @@ public class ChessBoard {
                             board[0][7].check && board[0][4].check &&
                             !new King("White").isUnderAttack(this, 0, 6)) {
 
-                        // Перемещаем короля и ладью
                         board[0][4] = null;
                         board[0][6] = new King("White");
                         board[0][6].check = false;
@@ -101,13 +96,12 @@ public class ChessBoard {
                         board[0][5] = new Rook("White");
                         board[0][5].check = false;
 
-                        nowPlayer = "Black"; // Следующий ход за черными
+                        nowPlayer = "Black";
                         return true;
                     }
                 }
             }
         } else {
-            // Для черных фигур
             if (board[7][7] == null || board[7][4] == null) return false;
             if (board[7][7].getSymbol().equals("R") && board[7][4].getSymbol().equals("K")) {
                 if (board[7][5] == null && board[7][6] == null) {
@@ -115,7 +109,6 @@ public class ChessBoard {
                             board[7][7].check && board[7][4].check &&
                             !new King("Black").isUnderAttack(this, 7, 6)) {
 
-                        // Перемещаем короля и ладью
                         board[7][4] = null;
                         board[7][6] = new King("Black");
                         board[7][6].check = false;
@@ -124,7 +117,7 @@ public class ChessBoard {
                         board[7][5] = new Rook("Black");
                         board[7][5].check = false;
 
-                        nowPlayer = "White"; // Следующий ход за белыми
+                        nowPlayer = "White";
                         return true;
                     }
                 }
